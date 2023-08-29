@@ -68,7 +68,7 @@ public class RouteController implements RouteApi {
 
         LOGGER.info("msg=[{}]", groupReqVO.toString());
 
-        //获取所有的推送列表
+        //获取所有的推送列表，其实就是从redis中获取所有用户，然后过滤掉自己后，挨个发送
         Map<Long, CIMServerResVO> serverResVOMap = accountService.loadRouteRelated();
         for (Map.Entry<Long, CIMServerResVO> cimServerResVOEntry : serverResVOMap.entrySet()) {
             Long userId = cimServerResVOEntry.getKey();
